@@ -10,8 +10,8 @@ const http = require("http");
 http
 
 	.createServer( (request, response) => {
-		response.writeHead(200);
-		response.write("Web server with Node.JS");
+		response.writeHead(200, {'Content-Type': 'text/html'});
+		response.write("<h1>Web server with Node.JS</h1>");
 		response.end();
 
 	})

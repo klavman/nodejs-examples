@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /*
 
@@ -9,8 +9,8 @@ https://nodejs.org/docs/latest-v5.x/api/http.html#http_http
 var http = require("http");
 
 http.createServer(function (request, response) {
-	response.writeHead(200);
-	response.write("Web server with Node.JS");
+	response.writeHead(200, { 'Content-Type': 'text/html' });
+	response.write("<h1>Web server with Node.JS</h1>");
 	response.end();
 }).listen(3000);
 
