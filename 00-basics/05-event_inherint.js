@@ -1,6 +1,6 @@
 const EventEmitter = require('events');
 
-class Clock extends EventEmitter {
+export class Clock extends EventEmitter {
   constructor() {
     super();
   }
