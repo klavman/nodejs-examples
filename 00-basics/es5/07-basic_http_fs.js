@@ -2,16 +2,12 @@
 
 var http = require('http');
 var fs = require('fs');
-var path = require('path');
 
-var PATH_APP = path.join(__dirname);
 var headers = { 'Content-type': 'text/html' };
 
-console.log(PATH_APP);
-
 http.createServer(function (request, response) {
-	response.writeHead(200, headers);
 
+	response.writeHead(200, headers);
 	fs.readFile('../../statics/index.html', function (err, data) {
 
 		if (err) throw err;
