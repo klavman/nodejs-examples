@@ -16,9 +16,6 @@ http.createServer((request, response) => {
 	console.log(`pathURL: ${pathURL}`);
 
 	urls.forEach( (element, index) => {
-
-		console.log(`element: ${element}`);
-		console.log(`index: ${index}`);
 		
 		if (element.route == pathURL) {
 
@@ -28,6 +25,10 @@ http.createServer((request, response) => {
 		}
 	});
 
+	if (!response.finished) {
+		response.writeHead(404, headers);
+		response.end('<h1>Error 404: NOT FOUND</h1>')
+	}
 
 }).listen(3000);
 

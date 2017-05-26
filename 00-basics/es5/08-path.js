@@ -15,15 +15,17 @@ http.createServer(function (request, response) {
 
 	urls.forEach(function (element, index) {
 
-		console.log('element: ' + element);
-		console.log('index: ' + index);
-
 		if (element.route == pathURL) {
 
 			response.writeHead(200, headers);
 			response.end(message + element.output);
 		}
 	});
+
+	if (!response.finished) {
+		response.writeHead(404, headers);
+		response.end('<h1>Error 404: NOT FOUND</h1>');
+	}
 }).listen(3000);
 
 console.log('Server runnig at http://127.0.0.1:3000');
