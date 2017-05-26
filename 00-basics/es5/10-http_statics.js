@@ -5,32 +5,50 @@ var fs = require('fs');
 var path = require('path');
 var url = require('url');
 
-var urls = [{ route: '', output: '../../statics/index.html' }, { route: 'acerca', output: '../../statics/acerca.html' }, { route: 'contacto', output: '../../statics/contacto.html' }];
+var urls = [{ id: 1, route: '', output: '../../statics/index.html' }, { id: 2, route: 'acerca', output: '../../statics/acerca.html' }, { id: 3, route: 'contacto', output: '../../statics/contacto.html' }];
 
 http.createServer(function (request, response) {
 
 	var headers = { 'Content-type': 'text/html' };
 
 	var pathURL = path.basename(request.url);
-	// www.loquesea.com/?id=1
 	var id = url.parse(request.url, true).query.id;
 
-	urls.forEach(function (element, index) {
+	var urlsIterator = urls[Symbol.iterator]();
 
-		if (element.route == pathURL || id == ++index) {
+	var _iteratorNormalCompletion = true;
+	var _didIteratorError = false;
+	var _iteratorError = undefined;
 
-			response.writeHead(200, headers);
-			fs.readFile(element.output, function (err, data) {
+	try {
+		for (var _iterator = urlsIterator[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+			var element = _step.value;
 
-				if (err) throw err;
-				response.end(data);
-			});
+
+			if (element.route == pathURL || element.id == id) {
+
+				response.writeHead(200, headers);
+				fs.readFile(element.output, function (err, data) {
+
+					if (err) throw err;
+					response.end(data);
+					console.log(response.finished);
+				});
+			}
 		}
-	});
-
-	if (!response.finished) {
-		response.writeHead(404, headers);
-		response.end('<h1>404: NOT FOUND</h1>');
+	} catch (err) {
+		_didIteratorError = true;
+		_iteratorError = err;
+	} finally {
+		try {
+			if (!_iteratorNormalCompletion && _iterator.return) {
+				_iterator.return();
+			}
+		} finally {
+			if (_didIteratorError) {
+				throw _iteratorError;
+			}
+		}
 	}
 }).listen(3000);
 
