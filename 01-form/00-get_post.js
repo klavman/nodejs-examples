@@ -1,5 +1,5 @@
 const http = require('http');
-const form = require('fs').readFileSync("statics/form.html");
+const form = require('fs').readFileSync("../../statics/form.html");
 const querystring = require('querystring');
 const util = require('util');
 

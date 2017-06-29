@@ -1,7 +1,7 @@
 'use strict';
 
 var http = require('http');
-var form = require('fs').readFileSync("statics/form.html");
+var form = require('fs').readFileSync("../../statics/form.html");
 var querystring = require('querystring');
 var util = require('util');
 

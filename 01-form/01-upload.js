@@ -5,6 +5,8 @@ const fs = require('fs-extra');
 
 http.createServer((request, response) => {
 
+
+
 	if (request.url == '/upload' && 
 		request.method.toLowerCase() == 'post') {
 
